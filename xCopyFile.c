@@ -34,14 +34,14 @@ enum FileCopyMode {
 //	Prototypes
 // -----------------------------------------------------------------------------
 
-OSErr GetVRefNumAndDirIDFromPath(CharsHandle filePath, short *vRefNum, short *dirID, unsigned char* outFilename);
+OSErr GetVRefNumAndDirIDFromPath(CharsHandle filePath, short *vRefNum, long *dirID, unsigned char* outFilename);
 
 
 // -----------------------------------------------------------------------------
 //	GetVRefNumAndDirIDFromPath
 // -----------------------------------------------------------------------------
 
-OSErr GetVRefNumAndDirIDFromPath(CharsHandle filePath, short *vRefNum, short *dirID, unsigned char* outFilename) {
+OSErr GetVRefNumAndDirIDFromPath(CharsHandle filePath, short *vRefNum, long *dirID, unsigned char* outFilename) {
 	OSErr		err = noErr;
 	Str255		errStr = {0};
 	AliasHandle	alias = NULL;
@@ -116,8 +116,8 @@ void xcmdmain(void)
 {
 	Str255 				errStr = {0};
 	OSErr 				err = noErr;
-	short 				sourceDirID = 0;
-	short 				destDirID = 0;
+	long 				sourceDirID = 0;
+	long 				destDirID = 0;
 	short 				fRefNum = 0;
 	short 				sourceVRefNum = 0;
 	short 				destVRefNum = 0;
@@ -147,7 +147,7 @@ void xcmdmain(void)
 		AppendReturnValue("\pSyntax: xCopyFile <source file path>, <dest folder path>[, {res|data}To{res|Data}Fork]");
 		return;
 	} else if (strcmp("!", *sourcePath) == 0) {
-		AppendReturnValue("\p(c) Copyright 2021 by Uli Kusterer, all rights reserved.");
+		AppendReturnValue("\p1.1, (c) Copyright 2021 by Uli Kusterer, all rights reserved.");
 		return;
 	}
 	
